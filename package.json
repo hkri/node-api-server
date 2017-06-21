@@ -1,0 +1,22 @@
+{
+  "name": "node-api-server",
+  "version": "1.0.0",
+  "description": "Application API Server using NodeJS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hkri/node-api-server.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "John Espiritu, Cloud Cheetah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hkri/node-api-server/issues"
+  },
+  "homepage": "https://github.com/hkri/node-api-server#readme"
+}
