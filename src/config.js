@@ -3,12 +3,12 @@
  * Configuration for the server.
 */
 
-module.exports = function() {
+module.exports = {
 
   // Define the port to use.
-  this.port = process.env.PORT || 8080;
+  port: process.env.PORT || 8080,
 
   // Define the route prefix.
-  this.prefix = '/api';
+  prefix: '/api'
 
 };
