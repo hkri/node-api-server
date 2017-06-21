@@ -1,0 +1,17 @@
+{
+  "EMP-001": {
+    "FirstName": "John",
+    "LastName": "Doe",
+    "Gender": "M"
+  },
+  "EMP-002": {
+    "FirstName": "Jane",
+    "LastName": "Doe",
+    "Gender": "F"
+  },
+  "EMP-003": {
+    "FirstName": "Kate",
+    "LastName": "Doe",
+    "Gender": "F"
+  }
+}
