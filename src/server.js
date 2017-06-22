@@ -36,16 +36,93 @@ router.post('/', function(req, res) {
   res.json({ message: '[POST] All systems operational.' });
 });
 
-// CRUD for sample Employees record json.
+// CRUD (View) for sample Employees record json.
 router.get('/employees', function(req, res) {
   var eid = req.query.id;     // stores the employee id requested.
   if(eid === undefined) res.json({ message: 'Invalid request.' });
   else {
     var manager = require('./functions/employees-manager');
     var data = manager.getEmployee(eid);
-    if(data === false) res.json({ message: 'No match found for employee with ID: ' + eid });
+    if(data === 1) res.json({ message: 'No match found for employee with ID: ' + eid });
     else res.json(data);
   }
+});
+
+// CRUD (Create) for sample Employees record json.
+router.post('/employees', function(req, res) {
+  // Gets the required data for creating new employee data.
+  var fn, ln, gndr;
+  fn    = req.body.firstname;
+  ln    = req.body.lastname;
+  gndr  = req.body.gender;
+
+  // Perform validations here.
+  var errors = [];
+  if(fn === undefined || fn === '')     { errors.push('Error: First name is required.');  }
+  if(ln === undefined || ln === '')     { errors.push('Error: Last name is required.');   }
+  if(gndr === undefined || gndr === '') { errors.push('Error: Gender is required.');      }
+
+  if(errors.length > 0) {
+    res.json({ message: "Operation failed - one or more required fields are missing." , errors});
+    return false;  // Stop execution here due to validation failure.
+  }
+
+  // Access the data manager to insert new record.
+  var manager = require('./functions/employees-manager');
+  var eid = manager.addEmployee(fn, ln, gndr); // Returns the employee id of the new employee.
+  if(eid === 1) res.json({ message: 'An error has occurred while creating a new employee record.' });
+  else res.json({ message: 'A new employee with ID ' + eid + ' was successfully created.' });
+
+});
+
+// CRUD (Update) for sample Employees record json.
+router.put('/employees', function(req, res) {
+  // Gets the required data for creating new employee data.
+  var id, fn, ln, gndr;
+  id    = req.body.id;
+  fn    = req.body.firstname;
+  ln    = req.body.lastname;
+  gndr  = req.body.gender;
+
+  // Perform validations here.
+  var errors = [];
+  if(id === undefined || id === '')     { errors.push('Error: Employee ID is required.');  }
+
+  if(errors.length > 0) {
+    res.json({ message: "Operation failed - a required field is missing." , errors});
+    return false;  // Stop execution here due to validation failure.
+  }
+
+  // Access the data manager to insert new record.
+  var manager = require('./functions/employees-manager');
+  var ok = manager.updateEmployee(id, fn, ln, gndr); // Returns the employee id of the new employee.
+  if(ok === 1) res.json({ message: 'A record for employee ' + id + ' does not exist.' });
+  else if(ok === 2) res.json({ message: 'No fields were specified for updating.' });
+  else res.json({ message: 'Employee ' + id + ' was successfully updated.' });
+
+});
+
+// CRUD (Delete) for sample Employees record json.
+router.delete('/employees', function(req, res) {
+  // Gets the required data for creating new employee data.
+  var id;
+  id = req.body.id;
+
+  // Perform validations here.
+  var errors = [];
+  if(id === undefined || id === '')     { errors.push('Error: Employee ID is required.');  }
+
+  if(errors.length > 0) {
+    res.json({ message: "Operation failed - a required field is missing." , errors});
+    return false;  // Stop execution here due to validation failure.
+  }
+
+  // Access the data manager to insert new record.
+  var manager = require('./functions/employees-manager');
+  var ok = manager.deleteEmployee(id); // Returns the employee id of the new employee.
+  if(ok === 1) res.json({ message: 'Employee with id ' + id + ' does not exist.' });
+  else res.json({ message: 'Employee ' + id + ' was successfully deleted.' });
+
 });
 
 // Register routes
