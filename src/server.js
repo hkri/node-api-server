@@ -36,6 +36,40 @@ router.post('/', function(req, res) {
   res.json({ message: '[POST] All systems operational.' });
 });
 
+// CRUD (View) Users table (MySQL)
+router.get('/users', function(req, res) {
+  var id = req.query.id;    // get the id param.
+  var qry = require('./mysql/sqlconn.js');
+  var ret;
+  qry.viewUser(id, function(ret) {
+    if(ret === 1) res.json({ message: 'Connection to database failed.' });
+    else if(ret === 2) res.json({ message: 'No matches found.' });
+    else res.json(ret);
+  });
+});
+
+// CRUD (Insert) for users table (MySQL)
+router.post('/users', function(req, res){
+  var username  = req.body.username;
+  var password  = req.body.password;
+  var errors = [];
+  if(username === undefined || username === '')
+    errors.push('Error: please specify the username.');
+  if(password === undefined || password === '')
+    errors.push('Error: please specify the password.');
+  if(errors.length > 0) {
+    res.json({ message: 'One or more required fields are missing.', errors: errors });
+    return;
+  }
+  var qry = require('./mysql/sqlconn.js');
+  qry.addUser(username, password, function(ret) {
+    if(ret === 3) res.json({ message: 'An error has occurred while adding the new record.' });
+    else if(ret === 1) res.json({ message: 'The specified username already exists. Please try again.' });
+    else if(ret === 2) res.json({ message: 'Failed to insert the new record.' });
+    else if(ret === 0) res.json({ message: 'New record was successfully added.' });
+  });
+});
+
 // CRUD (View) for sample Employees record json.
 router.get('/employees', function(req, res) {
   var eid = req.query.id;     // stores the employee id requested.
