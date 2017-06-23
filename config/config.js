@@ -1,5 +1,4 @@
 /*
- * config.js
  * Configuration for the server.
 */
 
