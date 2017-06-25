@@ -1,8 +1,8 @@
 /*
- * server.js
- * A simple NodeJS API server.
- * Created by: John Espiritu
- * June 21, 2017
+  server.js
+  A simple NodeJS API server.
+  Created by: John Espiritu
+  June 21, 2017
 */
 
 // Import the local config file.
