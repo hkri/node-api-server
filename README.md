@@ -74,5 +74,13 @@ To test your API, you can use any API testing tool like [Postman](https://www.ge
 ### Adding a parameter/param
 To pass data to the API, you can use the params field. To access it, click the **Params** button on the right side of the URL bar then an input table will appear below it. Params are formatted in a key-value pair.
 
+#### URL Query String
+Query string is a part of URL which contains data that can be used by a server program to perform specific tasks. A URL containing a query string will look something like:
+`http://yourserver.com/data?id=0f3FJ94K`
+
+Commonly, URLs containing query strings are handled using the GET method and should be used for retrieving data from the server.
+
+Using this demo, you can get access the query by using:  
+`var value = [request_object].query.[query_id];`
 
 **Documentation still work in progress**
