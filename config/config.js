@@ -2,12 +2,7 @@
  * Configuration for the server.
 */
 
-module.exports = {
+var config = module.exports = { };
 
-  // Define the port to use.
-  port: process.env.PORT || 8080,
-
-  // Define the route prefix.
-  prefix: '/api'
-
-};
+config.port = process.env.PORT || 8080;     // port.
+config.prefix = '/api';                     // route prefix.
