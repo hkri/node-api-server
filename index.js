@@ -1,71 +1,43 @@
 /*
-  server.js
-  A simple NodeJS API server.
-  Created by: John Espiritu
-  June 21, 2017
+  Node.js API Server Package
+  John Espiritu (c) June 2017
+  Cloud Cheetah
 */
 
-// Import the local config file.
-var settings  = require('./config/config');           // local config file.
-var routes    = require('./config/server-routes')     // local routes file.
+//module.exports = require('./lib/server.js');
 
-// Use Express
-var express   = require('express');                   // use express package.
-var server    = express();                            // initiate express framework.
+var svr = require('./lib/server');
 
-// Use JSON parser.
-var parser    = require('body-parser');               // used for parsing JSON.
+/* This shit's always undefined.
+function User() {
 
-// Import other packages.
-var df        = require('dateformat');                // For formatting dates/time.
-
-// Define a timestamping function (for console logging).
-var postTime = function() { return '[' + df(new Date(), 'HH:mm:ss') + '] '; }
-
-// Show welcome message.
-console.log('\nWelcome to Node API Server');
-console.log('\n' + postTime() + 'Initializing...')
-
-// Config Express server.
-server.use(parser.urlencoded({ extended: true }));
-server.use(parser.json());
-
-// Define the API routes.
-var router = express.Router();  // instance of Express router.
-
-// Iterate and listen to the routes specified in server-routes file.
-console.log(postTime() + "Setting up routes...\n");
-for(var key in routes.api) {
-  // Log and register routes.
-  var api = routes.api[key], verbs = [];
-  if(api.get !== undefined) {
-    verbs.push('GET');
-    router.get(api.path, api.get);
+  this.fA = function() {
+    console.log('Hello, from function A');
   }
-  if(api.post !== undefined) {
-    verbs.push('POST');
-    router.post(api.path, api.post);
+  this.fB = function() {
+    console.log('Hello, from function B');
   }
-  if(api.put !== undefined) {
-    verbs.push('PUT');
-    router.put(api.path, api.put);
+};
+
+var u = User();
+u.fA();
+*/
+
+function User(your_message) {
+  var me = { };
+  me.fA = function() {
+    console.log(your_message + ' -- function A');
   }
-  if(api.delete !== undefined) {
-    verbs.push('DELETE');
-    router.delete(api.path, api.delete);
+
+  me.fB = function() {
+    console.log(your_message + ' -- function B');
   }
-  console.log('\t' + key + ' (' + api.path + ') -> ' + verbs);
+  return me;
 }
 
-// Ping route.
-router.get('/', function(req, res) {
-  res.json({ message: 'All systems operational.' });
-});
+var userA = User('nakakabangag');
+userA.fA();
 
-// Register routes
-// Add a prefix to our route.
-server.use(settings.prefix, router);
-
-// Start the server.
-server.listen(settings.port);
-console.log('\n' + postTime() + 'Setup done. Server up on port ' + settings.port + '.\n');
+var userB = User('Hello');
+userB.fA();
+userA.fA();
