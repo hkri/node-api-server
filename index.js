@@ -4,40 +4,13 @@
   Cloud Cheetah
 */
 
-//module.exports = require('./lib/server.js');
+var server = require('./lib/server');
 
-var svr = require('./lib/server');
+server.init();
 
-/* This shit's always undefined.
-function User() {
-
-  this.fA = function() {
-    console.log('Hello, from function A');
-  }
-  this.fB = function() {
-    console.log('Hello, from function B');
-  }
-};
-
-var u = User();
-u.fA();
-*/
-
-function User(your_message) {
-  var me = { };
-  me.fA = function() {
-    console.log(your_message + ' -- function A');
-  }
-
-  me.fB = function() {
-    console.log(your_message + ' -- function B');
-  }
-  return me;
+var api = server.routes.add('myapi', '/api');
+api.get = function(req, res) {
+  res.json({ message: 'Hello, world!' });
 }
 
-var userA = User('nakakabangag');
-userA.fA();
-
-var userB = User('Hello');
-userB.fA();
-userA.fA();
+server.start();
