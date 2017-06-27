@@ -51,7 +51,7 @@ Function | Returns | Description
 Accessible via `<server_object>.routes`.  
 
 Function | Returns | Description
---- |
+--- | --- | --- |
 `add()` | route | Adds a new route to the server routes list.
 `get()` | route | Gets the route object based on it's id.
 `remove()` | void | Removes the specified route.
@@ -60,7 +60,7 @@ Function | Returns | Description
 `var routeA = server.routes.add('your_api_id', '/myapi');`
 
 Property | Type | Description
---- |
+--- | --- | --- |
 `id` | `string` | This serves as the id for your route  in the routes list collection.
 `path` | `string` | Contains the **URL** path of your API route.  
 `get = function(res, req) { }` | `function` | Contains the callback function for **GET** method.  
