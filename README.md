@@ -41,7 +41,7 @@ server.start(); // Listen to port 8080 (default)
 `var server = require('cheetah-api-server');`
 
 Function | Returns | Description
-| ---
+--- | --- | --- |
 `init()` | void | Setups the server.
 `start()`  | void | Sets up the routes and runs the server.
 `setPort(port_number)` | void | Sets the port to use.
