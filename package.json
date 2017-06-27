@@ -1,5 +1,5 @@
 {
-  "name": "node-api-server",
+  "name": "cheetah-api-server",
   "version": "1.0.0",
   "description": "Application API Server using NodeJS.",
   "main": "index.js",
@@ -18,5 +18,17 @@
   "bugs": {
     "url": "https://github.com/hkri/node-api-server/issues"
   },
-  "homepage": "https://github.com/hkri/node-api-server#readme"
+  "homepage": "https://github.com/hkri/node-api-server#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "dateformat": "^2.0.0",
+    "express": "^4.15.3",
+    "fs": "0.0.1-security",
+    "mysql": "^2.13.0",
+    "node-mysql": "^0.4.2",
+    "path-to-regexp": "^1.7.0"
+  }
 }
