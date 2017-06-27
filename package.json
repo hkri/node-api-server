@@ -1,5 +1,5 @@
 {
-  "name": "node-api-server",
+  "name": "cheetah-api-server",
   "version": "1.0.0",
   "description": "Application API Server using NodeJS.",
   "main": "index.js",
